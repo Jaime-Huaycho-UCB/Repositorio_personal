@@ -15,6 +15,7 @@ public class ConexionMySQL {
             MostrarMensaje("Menu");
             break;
         }
+        CerrarConexion(conexion);
     }
 
     public static Connection EstablecerConexion(String url,String usuario,String contrasena){
@@ -35,6 +36,16 @@ public class ConexionMySQL {
                 if (!(Reintentar())){
                     return null;
                 }
+            }
+        }
+    }
+
+    public static void CerrarConexion(Connection conexion){
+        if (conexion!=null){
+            try {
+                conexion.close();
+            } catch (SQLException e) {
+                MostrarMensaje("No se pudo cerrar la conexion");
             }
         }
     }
