@@ -1,13 +1,26 @@
 package Libreria;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 public class Lib {
-
-    public String n="\n";
-    
+    public String n(){
+        return "\n";
+    }
+    public String t(){
+        return "\t";
+    }
+    public String n(int numero){
+        String nl="",n="\n";
+        for (int i=0;i<numero;i++){
+            nl+=n;
+        }
+        return nl;
+    }
     public String t(int numero){
         String tab="",t="\t";
         for (int i=0;i<numero;i++){
@@ -61,7 +74,7 @@ public class Lib {
         opcion=JOptionPane.showOptionDialog(null,mensaje,"Selecciones una opcion", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,null, botones,0);
         return botones[opcion];
     }
-    // Inicio - Fin
+    // Fin - Entradas
 
     // Inicio - Funciones matematicas
     public int RandomEntero(int a,int b) {
@@ -74,4 +87,47 @@ public class Lib {
         return numeroRedondeado;
     }
     // Fin - Funciones matematicas
+
+    // Inicio - Funciones tiempo
+    public int Fecha(int opcion) {
+        LocalDate fecha = LocalDate.now();
+        switch (opcion) {
+            case 1:
+                return fecha.getDayOfMonth(); // Devuelve el día del mes actual
+            case 2:
+                return fecha.getMonthValue(); // Devuelve el número del mes actual
+            case 3:
+                return fecha.getYear(); // Devuelve el año actual
+            default:
+                return 0;
+        }
+    }
+    public String Fecha(){
+        String salidaFecha="";
+        salidaFecha+=Fecha(1)+"/";
+        salidaFecha+=Fecha(2)+"/";
+        salidaFecha+=Fecha(3);
+        return salidaFecha;
+    }
+    public int Tiempo(int opcion) {
+        LocalTime tiempo = LocalTime.now();
+        switch (opcion) {
+            case 1:
+                return tiempo.getHour(); // Devuelve la hora actual
+            case 2:
+                return tiempo.getMinute(); // Devuelve el minuto actual
+            case 3:
+                return tiempo.getSecond(); // Devuelve el segundo actual
+            default:
+                return 0;
+        }
+    }
+    public String Tiempo(){
+        String salidaTiempo="";
+        salidaTiempo+=Tiempo(1)+":";
+        salidaTiempo+=Tiempo(2)+":";
+        salidaTiempo+=Tiempo(3);
+        return salidaTiempo;
+    }
+    // Fin - Funciones tiempo
 }
