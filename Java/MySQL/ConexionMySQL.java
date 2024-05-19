@@ -55,7 +55,7 @@ public class ConexionMySQL {
         String opcion="";
         String[] bototnes = {"No","Si"};
         while (true) {
-            opcion=lib.Botones("Reintentar?", bototnes);
+            opcion=lib.EntradaBotones("Reintentar?", bototnes);
             if (opcion.equals("No")){
                 return false;
             }else if (opcion.equals("Si")){
