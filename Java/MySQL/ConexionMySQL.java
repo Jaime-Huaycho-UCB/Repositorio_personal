@@ -1,12 +1,11 @@
 package MySQL;
 import java.sql.*;
 
-import Librerias.Lib;
+import Librerias.Libreria;
 
 public class ConexionMySQL {
-    public static Lib lib = new Lib();
+    public static Libreria lib = new Libreria();
     public static void main(String[] args) {
-        Lib lib = new Lib();
         String url="jdbc:mysql://localhost:3306/Prueba";
         String usuario="root";
         String contrasena="";
