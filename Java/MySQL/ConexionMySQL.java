@@ -1,6 +1,7 @@
 package MySQL;
 import java.sql.*;
-import Libreria.Lib;
+
+import Librerias.Lib;
 
 public class ConexionMySQL {
     public static Lib lib = new Lib();

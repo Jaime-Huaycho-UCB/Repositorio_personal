@@ -1,4 +1,4 @@
-package Libreria;
+package Librerias;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-public class Lib {
+public class Libreria {
     public String n(){
         return "\n";
     }
@@ -71,7 +71,7 @@ public class Lib {
     }
     public String EntradaBotones(String mensaje,String[] botones){
         int opcion=0;
-        opcion=JOptionPane.showOptionDialog(null,mensaje,"Selecciones una opcion", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,null, botones,0);
+        opcion=JOptionPane.showOptionDialog(null,mensaje,"Presione una opcion", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,null, botones,0);
         return botones[opcion];
     }
     // Fin - Entradas
@@ -81,7 +81,6 @@ public class Lib {
         return (int)(Math.random() * (b - a + 1)) + a;
     }
     public static double LimitarDecimales(double numero, int decimales) {
-        // Multiplicar el número por 10^n, donde n es la cantidad de decimales
         double factor = Math.pow(10, decimales);
         double numeroRedondeado = Math.round(numero * factor) / factor;
         return numeroRedondeado;
@@ -93,11 +92,11 @@ public class Lib {
         LocalDate fecha = LocalDate.now();
         switch (opcion) {
             case 1:
-                return fecha.getDayOfMonth(); // Devuelve el día del mes actual
+                return fecha.getDayOfMonth();
             case 2:
-                return fecha.getMonthValue(); // Devuelve el número del mes actual
+                return fecha.getMonthValue();
             case 3:
-                return fecha.getYear(); // Devuelve el año actual
+                return fecha.getYear();
             default:
                 return 0;
         }
@@ -113,11 +112,11 @@ public class Lib {
         LocalTime tiempo = LocalTime.now();
         switch (opcion) {
             case 1:
-                return tiempo.getHour(); // Devuelve la hora actual
+                return tiempo.getHour();
             case 2:
-                return tiempo.getMinute(); // Devuelve el minuto actual
+                return tiempo.getMinute();
             case 3:
-                return tiempo.getSecond(); // Devuelve el segundo actual
+                return tiempo.getSecond();
             default:
                 return 0;
         }
@@ -128,6 +127,99 @@ public class Lib {
         salidaTiempo+=Tiempo(2)+":";
         salidaTiempo+=Tiempo(3);
         return salidaTiempo;
+    }
+    public String Mes(int mes){
+        switch (mes) {
+            case 1:
+                return "Enero";
+            case 2:
+                return "Febrero";
+            case 3:
+                return "Marzo";
+            case 4:
+                return "Abril";
+            case 5:
+                return "Mayo";
+            case 6:
+                return "Junio";
+            case 7:
+                return "Julio";
+            case 8:
+                return "Agosto";
+            case 9:
+                return "Septiembre";
+            case 10:
+                return "Octubre";
+            case 11:
+                return "Noviembre";
+            case 12:
+                return "Diciembre";
+            default:
+                return "";
+        }
+    }
+    public int EntradaMes(String mensaje){
+        int mes = 0;
+        while (true) {
+            mes = EntradaEntero(
+            mensaje+n()+
+            "1) Enero"+n()+
+            "2) Febrero"+n()+
+            "3) Marzo"+n()+
+            "4) Abril"+n()+
+            "5) Mayo"+n()+
+            "6) Junio"+n()+
+            "7) Julio"+n()+
+            "8) Agosto"+n()+
+            "9) Septiembre"+n()+
+            "10) Octubre"+n()+
+            "11) Noviembre"+n()+
+            "12) Diciembre"
+            );
+            if (mes>=1 && mes<=12){
+                return mes;
+            }else{
+                MostrarMensaje("Elija una opcion valida");
+            }
+        }
+    }
+    public int EntradaMes(String mensaje,int mesInferior,int mesSuperior){
+        String[] meses={"Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"};
+        int a=0,b=0;
+        if (mesInferior<=mesSuperior){
+            a=mesInferior-1;
+            b=mesSuperior-1;
+        }else{
+            a=mesSuperior-1;
+            b=mesInferior-1;
+        }
+        if (a<0){
+            a=0;
+        }
+        if (a>11){
+            a=11;
+        }
+        if (b<0){
+            b=0;
+        }
+        if (b>11){
+            b=11;
+        }
+        String salidaMeses=mensaje+n();
+        int c=0;
+        for (int i=a;i<=b;i++){
+            salidaMeses+=(i-a+1)+") "+meses[i]+n();
+            c+=1;
+        }
+        int mes=0;
+        while (true) {
+            mes = EntradaEntero(salidaMeses);
+            if (mes>=1 && mes<=c){
+                return (a+mes);
+            }else{
+                MostrarMensaje("Elija una opcion valida");
+            }
+        }
     }
     // Fin - Funciones tiempo
 }
