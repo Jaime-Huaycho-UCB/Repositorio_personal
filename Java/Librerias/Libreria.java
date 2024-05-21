@@ -8,6 +8,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 public class Libreria {
+    // Inicio - Funciones cadena
     public String n(){
         return "\n";
     }
@@ -28,6 +29,7 @@ public class Libreria {
         }
         return tab;
     }
+    // Fin - Funciones cadena
 
     // Inicio - Salidas
     public void MostrarMensaje(String mensaje){
