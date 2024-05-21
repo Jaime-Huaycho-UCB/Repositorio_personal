@@ -103,9 +103,9 @@ public class Libreria {
     }
     public String Fecha(){
         String salidaFecha="";
-        salidaFecha+=Fecha(1)+"/";
-        salidaFecha+=Fecha(2)+"/";
-        salidaFecha+=Fecha(3);
+        salidaFecha+=Fecha(3)+"-";
+        salidaFecha+=Fecha(2)+"-";
+        salidaFecha+=Fecha(1);
         return salidaFecha;
     }
     public int Tiempo(int opcion) {
