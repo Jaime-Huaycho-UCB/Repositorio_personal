@@ -6,10 +6,11 @@ import Librerias.Libreria;
 public class ConexionMySQL {
     public static Libreria lib = new Libreria();
     public static void main(String[] args) {
-        String url="jdbc:mysql://localhost:3306/Prueba";
         String usuario="root";
         String contrasena="";
-        Connection conexion=EstablecerConexion(url, usuario, contrasena);
+        String puerto="3306";
+        String nombreBaseDatos="Prueba";
+        Connection conexion=EstablecerConexion(puerto, nombreBaseDatos, usuario, contrasena);
         while (true) {
             if (conexion==null)
                 break;
@@ -19,26 +20,21 @@ public class ConexionMySQL {
         CerrarConexion(conexion);
     }
 
-    public static Connection EstablecerConexion(String url,String usuario,String contrasena){
-        Connection conexion = null;
+    public static Connection EstablecerConexion(String puerto,String nombreBaseDatos,String user, String password){
+        String driver = "com.mysql.cj.jdbc.Driver";
+        String url = "jdbc:mysql://localhost:"+puerto+"/"+nombreBaseDatos;
+        String[] botones = {"Salir programa","Reintentar"};
         while (true) {
             try {
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                conexion = DriverManager.getConnection(url,usuario,contrasena);
-                lib.MostrarMensaje("Conexion exitosa");
-                return conexion;
-            } catch (ClassNotFoundException e) {
-                lib.MostrarMensaje("No se encontro el Driver");
-                if (!(Reintentar())){
-                    return null;
-                }
-            } catch (SQLException e) {
-                lib.MostrarMensaje("No se pudo establecer la conexión con la base de datos");
-                if (!(Reintentar())){
-                    return null;
+                Class.forName(driver);
+                return DriverManager.getConnection(url, user, password);
+            } catch (ClassNotFoundException | SQLException e) {
+                if (lib.EntradaBotones("El servidor non se pudo conectar: "+e,botones).equals("Salir programa")){
+                    break;
                 }
             }
         }
+        return null;
     }
 
     public static void CerrarConexion(Connection conexion){
