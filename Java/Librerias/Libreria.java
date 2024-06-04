@@ -3,9 +3,7 @@ package Librerias;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
+import javax.swing.*;
 
 public class Libreria {
     // Inicio - Funciones cadena
